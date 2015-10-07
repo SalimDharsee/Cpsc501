@@ -57,6 +57,7 @@ public class demo{
 		String in_mode = null;
 		byte[] seedByte = null;
 		byte[] seedByteDec = null;
+		System.out.println("hi");
 		try{
 			//grab command lines arguments 
 			in_mode = (args[0]);
