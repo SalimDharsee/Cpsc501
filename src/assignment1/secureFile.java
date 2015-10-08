@@ -32,22 +32,15 @@ public class secureFile{
 	private static SecretKeySpec sec_key_spec = null;
 	private static Cipher sec_cipher = null;
 
-
-
 	public static void main(String args[]) throws Exception{
 		
 		FileInputStream in_file = null;
 		FileInputStream in_file2 = null;
 		FileOutputStream out_file = null;
-
 		byte[] sha_hash = null;
-
 		byte[] aes_ciphertext = null;
-	
 		int read_bytes = 0;
-
 		String in_seed = null;
-
 		byte[] seedByte = null;
 
 		try{
@@ -67,7 +60,7 @@ public class secureFile{
 				byte [] seedArray = new byte[16];
 				//encrypt file with AES
 				//key setup - generate 128 bit key
-				randomSeed(new RandomSeedSecure(seedByte, seedArray));
+				randomSeed(new RandomSeed(seedByte, seedArray));
 
 				//create the cipher object that uses AES as the algorithm
 				sec_cipher = Cipher.getInstance("AES");	
@@ -95,12 +88,12 @@ public class secureFile{
 			}
 		}
 	}
-	private static void randomSeed(RandomSeedSecure parameterObject)
+	private static void randomSeed(RandomSeed parameterObject)
 			throws NoSuchAlgorithmException {
 		SecureRandom rand = SecureRandom.getInstance("SHA1PRNG");
-		rand.setSeed(parameterObject.seedBytes);
-		rand.nextBytes(parameterObject.seedArrays);
-		sec_key_spec = new SecretKeySpec(parameterObject.seedArrays, "AES");
+		rand.setSeed(parameterObject.seedByte);
+		rand.nextBytes(parameterObject.seedArray);
+		sec_key_spec = new SecretKeySpec(parameterObject.seedArray, "AES");
 	}
 	
 	// Taken from the demo code provided 

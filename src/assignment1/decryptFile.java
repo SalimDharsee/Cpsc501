@@ -61,7 +61,7 @@ public class decryptFile{
 			//decrypt file with AES
 			//key setup - generate 128 bit key
 			//using the seed given in the command line to generate the key 
-			randomSeed(new RandomSeedDecrypt(seedByteDec, seedArrayDec));
+			randomSeed(new RandomSeed(seedByteDec, seedArrayDec));
 
 			//create the cipher object that uses AES as the algorithm
 			sec_cipher = Cipher.getInstance("AES");	
@@ -89,12 +89,12 @@ public class decryptFile{
 		}
 	}
 }
-	private static void randomSeed(RandomSeedDecrypt parameterObject)
+	private static void randomSeed(RandomSeed parameterObject)
 			throws NoSuchAlgorithmException {
 		SecureRandom randDec = SecureRandom.getInstance("SHA1PRNG");
-		randDec.setSeed(parameterObject.seedByteDecs);
-		randDec.nextBytes(parameterObject.seedArrayDecs);
-		sec_key_spec = new SecretKeySpec(parameterObject.seedArrayDecs, "AES");
+		randDec.setSeed(parameterObject.seedByte);
+		randDec.nextBytes(parameterObject.seedArray);
+		sec_key_spec = new SecretKeySpec(parameterObject.seedArray, "AES");
 	}
 
 
