@@ -30,7 +30,7 @@ public class decryptFile{
 		int read_bytes = 0;
 
 		String in_seed = null;
-		
+		checkArgs(args);
 		byte[] seedByteDec = null;
 		try{
 			//grab command lines arguments 
@@ -85,7 +85,12 @@ public class decryptFile{
 	}
 
 
-
+	public static void checkArgs(String[] args){
+		if(args == null || args.length < 2){
+			throw new IllegalArgumentException();
+			
+		}
+	}
 
 // Taken from the demo code provided
 public static String decrypt_input(byte[] data_in) throws Exception{

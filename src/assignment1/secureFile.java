@@ -23,6 +23,7 @@ public class secureFile{
 
 	public static void main(String args[]) throws Exception{
 		
+		checkArgs(args);
 		FileInputStream in_file = null;
 		FileInputStream in_file2 = null;
 		FileOutputStream out_file = null;
@@ -31,7 +32,8 @@ public class secureFile{
 		int read_bytes = 0;
 		String in_seed = null;
 		byte[] seedByte = null;
-
+		
+		
 		try{
 			//grab command lines arguments 
 			in_seed = (args[1]);
@@ -85,6 +87,11 @@ public class secureFile{
 		sec_key_spec = new SecretKeySpec(parameterObject.seedArray, "AES");
 	}
 	
+	public static void checkArgs(String[] args){
+		if(args == null || args.length < 2){
+			throw new IllegalArgumentException();
+		}
+	}
 	// Taken from the demo code provided 
 	public static byte[] sha1_hash(byte[] input_data) throws Exception{
 		byte[] hashval = null;
