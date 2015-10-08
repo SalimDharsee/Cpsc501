@@ -27,35 +27,23 @@ import java.security.SecureRandom;
 
 
 public class decryptFile{
-	private static KeyGenerator key_gen = null;
-	private static SecretKey sec_key = null;
-	private static byte[] raw = null;
+	
 	private static SecretKeySpec sec_key_spec = null;
 	private static Cipher sec_cipher = null;
 
-	private static KeyPairGenerator keypairgen = null;
-	private static KeyPair keypair = null;
-	private static DSAPrivateKey private_key = null;
-	private static DSAPublicKey public_key = null;
-	private static Signature dsa_sig = null;
-	private static SecureRandom secRan = null;
-	private static BigInteger big_sig = null;
+	
 
 	public static void main(String args[]) throws Exception{
 		FileInputStream in_file = null;
 		FileInputStream in_file2 = null;
 		FileOutputStream out_file = null;
 		FileOutputStream out_file2 = null;
-		byte[] sha_hash = null;
-		byte[] hmac_hash = null;
-		byte[] aes_ciphertext = null;
-		byte[] sig = null;
+	
 		String decrypted_str = new String();
 		int read_bytes = 0;
-		boolean verify = false;
+
 		String in_seed = null;
-		String in_mode = null;
-		byte[] seedByte = null;
+		
 		byte[] seedByteDec = null;
 		try{
 			//grab command lines arguments 
