@@ -1,19 +1,8 @@
 package assignment1;
 /*
  * Salim Dharsee, ID# 10062458
- * CPSC 418 Fall 2015
+ * CPSC 501 Fall 2015
  * Assignment 1
- * Question 6, Coding
- * 
- * The following code will take a file and a seed given by a command line argument,
- * it will encrypt or decrypt the given file and output a new file with which will 
- * have either the cipher text or plain text based on the mode stated by the user at
- * run time. 
- * 
- * The following code written below was influenced by the demo code given by the instructor,
- * any similarities between code should be assumed to be from this.
- * 
- * 
  */
 import java.io.*;
 import java.security.*;
