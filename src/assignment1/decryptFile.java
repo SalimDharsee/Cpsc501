@@ -61,7 +61,7 @@ public class decryptFile{
 			//decrypt file with AES
 			//key setup - generate 128 bit key
 			//using the seed given in the command line to generate the key 
-			randomSeed(seedByteDec, seedArrayDec);
+			randomSeed(new RandomSeedDecrypt(seedByteDec, seedArrayDec));
 
 			//create the cipher object that uses AES as the algorithm
 			sec_cipher = Cipher.getInstance("AES");	
@@ -89,44 +89,17 @@ public class decryptFile{
 		}
 	}
 }
-	private static void randomSeed(byte[] seedByteDec, byte[] seedArrayDec)
+	private static void randomSeed(RandomSeedDecrypt parameterObject)
 			throws NoSuchAlgorithmException {
 		SecureRandom randDec = SecureRandom.getInstance("SHA1PRNG");
-		randDec.setSeed(seedByteDec);
-		randDec.nextBytes(seedArrayDec);
-		sec_key_spec = new SecretKeySpec(seedArrayDec, "AES");
+		randDec.setSeed(parameterObject.seedByteDecs);
+		randDec.nextBytes(parameterObject.seedArrayDecs);
+		sec_key_spec = new SecretKeySpec(parameterObject.seedArrayDecs, "AES");
 	}
-// Taken from the demo code provided 
-public static byte[] sha1_hash(byte[] input_data) throws Exception{
-	byte[] hashval = null;
-	try{
-		//create message digest object
-		MessageDigest sha1 = MessageDigest.getInstance("SHA1");
-		
-		//make message digest
-		hashval = sha1.digest(input_data);
-	}
-	catch(NoSuchAlgorithmException nsae){
-		System.out.println(nsae);
-	}
-	return hashval;
-}
+
 
 // Taken from the demo code provided
-public static byte[] aes_encrypt(byte[] data_in) throws Exception{
-	byte[] out_bytes = null;
-	try{
-		//set cipher object to encrypt mode
-		sec_cipher.init(Cipher.ENCRYPT_MODE, sec_key_spec);
 
-		//create ciphertext
-		out_bytes = sec_cipher.doFinal(data_in);
-	}
-	catch(Exception e){
-		System.out.println(e);
-	}
-	return out_bytes;
-}
 // Taken from the demo code provided
 public static String aes_decrypt(byte[] data_in) throws Exception{
 	byte[] decrypted = null;
