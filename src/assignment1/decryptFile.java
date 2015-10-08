@@ -31,8 +31,6 @@ public class decryptFile{
 	private static SecretKeySpec sec_key_spec = null;
 	private static Cipher sec_cipher = null;
 
-	
-
 	public static void main(String args[]) throws Exception{
 		FileInputStream in_file = null;
 		FileInputStream in_file2 = null;
@@ -67,7 +65,7 @@ public class decryptFile{
 			sec_cipher = Cipher.getInstance("AES");	
 
 			//do AES decryption
-			decrypted_str = aes_decrypt(decmsg);
+			decrypted_str = decrypt_input(decmsg);
 			
 			out_file2.write(decrypted_str.getBytes());
 			System.out.println("decrypted: " + decrypted_str);
@@ -98,10 +96,10 @@ public class decryptFile{
 	}
 
 
-// Taken from the demo code provided
+
 
 // Taken from the demo code provided
-public static String aes_decrypt(byte[] data_in) throws Exception{
+public static String decrypt_input(byte[] data_in) throws Exception{
 	byte[] decrypted = null;
 	String dec_str = null;
 	try{

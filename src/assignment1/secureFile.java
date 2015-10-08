@@ -66,7 +66,7 @@ public class secureFile{
 				sec_cipher = Cipher.getInstance("AES");	
 
 				//do AES encryption
-				aes_ciphertext = aes_encrypt(msg);
+				aes_ciphertext = encrypt_input(msg);
 				String inc_str = new String ();
 				inc_str = new String(aes_ciphertext);
 				System.out.println(inc_str);
@@ -113,7 +113,7 @@ public class secureFile{
 	}
 
 	// Taken from the demo code provided
-	public static byte[] aes_encrypt(byte[] data_in) throws Exception{
+	public static byte[] encrypt_input(byte[] data_in) throws Exception{
 		byte[] out_bytes = null;
 		try{
 			//set cipher object to encrypt mode
