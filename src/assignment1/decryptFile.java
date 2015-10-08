@@ -73,10 +73,7 @@ public class decryptFile{
 			//decrypt file with AES
 			//key setup - generate 128 bit key
 			//using the seed given in the command line to generate the key 
-			SecureRandom randDec = SecureRandom.getInstance("SHA1PRNG");
-			randDec.setSeed(seedByteDec);
-			randDec.nextBytes(seedArrayDec);
-			sec_key_spec = new SecretKeySpec(seedArrayDec, "AES");
+			randomSeed(seedByteDec, seedArrayDec);
 
 			//create the cipher object that uses AES as the algorithm
 			sec_cipher = Cipher.getInstance("AES");	
@@ -104,6 +101,13 @@ public class decryptFile{
 		}
 	}
 }
+	private static void randomSeed(byte[] seedByteDec, byte[] seedArrayDec)
+			throws NoSuchAlgorithmException {
+		SecureRandom randDec = SecureRandom.getInstance("SHA1PRNG");
+		randDec.setSeed(seedByteDec);
+		randDec.nextBytes(seedArrayDec);
+		sec_key_spec = new SecretKeySpec(seedArrayDec, "AES");
+	}
 // Taken from the demo code provided 
 public static byte[] sha1_hash(byte[] input_data) throws Exception{
 	byte[] hashval = null;
